@@ -1,55 +1,34 @@
 # Safe Active Learning with Future Viability Guarantees in Time-Series Models
 
-For the project report, follow the [NCC experiment guide](experiments/ncc/README.md) to generate the synthetic data, compare FA-SAL (NN) with SAL-NX and Tebbe-ABM, and read the results.
+## Synthetic NCC experiment
 
-## Paper experiments
+Run these commands from the repository root. See the [NCC guide](experiments/ncc/README.md) for dependencies and full run instructions.
 
-Run the scripts from the repository root.
-
-| Paper table | Command |
+| Command | Output |
 | --- | --- |
-| Table 1 | `bash scripts/run_base.sh` |
-| Table 2 | `bash scripts/run_penalty_stress.sh` |
-| Table 3 | `bash scripts/run_rail_pressure.sh` |
-| Table 4 | `bash scripts/run_ngsim.sh` |
+| `python -m experiments.ncc.generate` | Synthetic naphtha cracking data with 29 inputs and 30 outputs. |
+| `python -m experiments.ncc.run` | RMSE, safety violation rate, and safe-set IoU for FA-SAL (NN), SAL-NX, and Tebbe-ABM. |
 
-<details>
-<summary>Additional experiments referenced in the paper reviews</summary>
+## Paper benchmarks
 
-The scripts below are in `scripts/`.
+Run each shell script with `bash scripts/<filename>`.
 
-**Reviewer JLLo**
+| Script | Experiment |
+| --- | --- |
+| [run_base.sh](scripts/run_base.sh) | Synthetic process under the base conditions (Table 1). |
+| [run_penalty_stress.sh](scripts/run_penalty_stress.sh) | Synthetic process with a larger penalty for entering a dead end (Table 2). |
+| [run_rail_pressure.sh](scripts/run_rail_pressure.sh) | Rail-pressure control benchmark (Table 3). |
+| [run_ngsim.sh](scripts/run_ngsim.sh) | Car-following benchmark using NGSIM vehicle trajectories (Table 4). |
 
-Q1: run_penalty_stress_m4_extended_lf_sweep.sh, run_penalty_stress_m8_extended_lf_sweep.sh
+## Additional experiments
 
-Q3: run_fasal_al_mpc_horizon.sh
-
----
-
-**Reviewer PGwo**
-
-Q2: run_fasal_al_mpc_horizon.sh, run_penalty_stress_m1.sh, run_penalty_stress_m2.sh, run_penalty_stress_m4.sh, run_penalty_stress_m8.sh
-
-Q3: run_rail_pressure_lf_sweep.sh
-
----
-
-**Reviewer 5qN4**
-
-Q2: run_penalty_stress_m1.sh, run_penalty_stress_m2.sh, run_penalty_stress_m4.sh, run_penalty_stress_m8.sh, run_penalty_stress_m4_extended_lf_sweep.sh, run_penalty_stress_m8_extended_lf_sweep.sh
-
-Q5: run_penalty_stress_m4.sh, run_penalty_stress_m8.sh
-
----
-
-**Reviewer 7V5z**
-
-Q2: run_lag_dimension_sweep.sh
-
-Q4: run_penalty_stress_m4_extended_lf_sweep.sh, run_penalty_stress_m8_extended_lf_sweep.sh
-
-Q13: run_fixed_adaptive_scale.sh
-
-Q14: run_gp_scale_grid.sh
-
-</details>
+| Script | Experiment |
+| --- | --- |
+| [run_penalty_stress_m1.sh](scripts/run_penalty_stress_m1.sh), [m2](scripts/run_penalty_stress_m2.sh), [m4](scripts/run_penalty_stress_m4.sh), [m8](scripts/run_penalty_stress_m8.sh) | FA-SAL continuation policies and baselines at safety horizons of 1, 2, 4, and 8 steps, respectively. |
+| [run_penalty_stress_m1_lf_sweep.sh](scripts/run_penalty_stress_m1_lf_sweep.sh), [m2](scripts/run_penalty_stress_m2_lf_sweep.sh) | Sensitivity to the dynamics Lipschitz scale on the penalty-stress benchmark at horizons 1 and 2. |
+| [run_penalty_stress_m4_extended_lf_sweep.sh](scripts/run_penalty_stress_m4_extended_lf_sweep.sh), [m8](scripts/run_penalty_stress_m8_extended_lf_sweep.sh) | A wider sweep of the same scale at horizons 4 and 8. |
+| [run_fasal_al_mpc_horizon.sh](scripts/run_fasal_al_mpc_horizon.sh) | FA-SAL versus active-learning MPC across planning horizons. |
+| [run_rail_pressure_lf_sweep.sh](scripts/run_rail_pressure_lf_sweep.sh) | Sensitivity to the dynamics Lipschitz scale on the rail-pressure benchmark. |
+| [run_lag_dimension_sweep.sh](scripts/run_lag_dimension_sweep.sh) | Effect of the number of past inputs and outputs on FA-SAL performance. |
+| [run_fixed_adaptive_scale.sh](scripts/run_fixed_adaptive_scale.sh) | Fixed versus adaptive GP parameters and Lipschitz estimates at different initial scales. |
+| [run_gp_scale_grid.sh](scripts/run_gp_scale_grid.sh) | Joint sensitivity to the two Lipschitz scale factors, each varied over 0.5, 1, and 2. |
