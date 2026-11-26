@@ -43,3 +43,8 @@ Q4: run_penalty_stress_m4_extended_lf_sweep.sh, run_penalty_stress_m8_extended_l
 Q13: run_fixed_adaptive_scale.sh
 
 Q14: run_gp_scale_grid.sh
+
+## Synthetic NCC experiment
+
+See [experiments/ncc](experiments/ncc/) for the APS data generator and the
+FA-SAL (NN), SAL-NX and Tebbe-ABM comparison.
