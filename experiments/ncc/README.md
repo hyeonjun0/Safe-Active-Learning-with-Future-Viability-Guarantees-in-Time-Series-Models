@@ -22,4 +22,4 @@ python -m experiments.ncc.run --data /path/to/APS_gaussian_xbatch_noise_data.npz
 
 Open `experiments/ncc/results/full/summary.csv` for the mean and standard deviation across trials of three final-round metrics: prediction error (RMSE), safety violation rate (SVR), and safe-set overlap (IoU). For another run, select a fresh directory with `--output`.
 
-The generator uses a fixed seed for new runs. Reproducing the exact values in the project report requires the original dataset.
+The generator uses a fixed seed for new runs.
