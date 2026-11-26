@@ -1,14 +1,22 @@
-Please run the following commands to reproduce the results.
+# Safe Active Learning with Future Viability Guarantees in Time-Series Models
 
-Table 1: run_base.sh
+For the project report, follow the [NCC experiment guide](experiments/ncc/README.md) to generate the synthetic data, compare FA-SAL (NN) with SAL-NX and Tebbe-ABM, and read the results.
 
-Table 2: run_penalty_stress.sh
+## Paper experiments
 
-Table 3: run_rail_pressure.sh
+Run the scripts from the repository root.
 
-Table 4: run_ngsim.sh
+| Paper table | Command |
+| --- | --- |
+| Table 1 | `bash scripts/run_base.sh` |
+| Table 2 | `bash scripts/run_penalty_stress.sh` |
+| Table 3 | `bash scripts/run_rail_pressure.sh` |
+| Table 4 | `bash scripts/run_ngsim.sh` |
 
----
+<details>
+<summary>Additional experiments referenced in the paper reviews</summary>
+
+The scripts below are in `scripts/`.
 
 **Reviewer JLLo**
 
@@ -44,7 +52,4 @@ Q13: run_fixed_adaptive_scale.sh
 
 Q14: run_gp_scale_grid.sh
 
-## Synthetic NCC experiment
-
-See [experiments/ncc](experiments/ncc/) for the APS data generator and the
-FA-SAL (NN), SAL-NX and Tebbe-ABM comparison.
+</details>
